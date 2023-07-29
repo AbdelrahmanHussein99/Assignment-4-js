@@ -1,17 +1,20 @@
+// ----------------form variables------------------------
+
 var userName = document.getElementById("userName");
 var userEmail = document.getElementById("userEmail");
 var pass = document.getElementById("pass");
 var insertText = document.getElementById("insertText");
-// ===========================================
 var signUpBtn = document.getElementById("signUpBtn");
 var signInBtn = document.getElementById("signInBtn");
-// prag and links elemets
+// ---------prag and links elemets-----------------------
+
 var signUpLink = document.getElementById("signUpLink");
 var signInLink = document.getElementById("signInLink");
 var signUpPrag = document.getElementById("signUpPrag");
 var signInPrag = document.getElementById("signInPrag");
 var TermsBox = document.getElementById("TermsBox");
-// ===========================================
+// show and hide elements with signUp Link--------------
+
 signUpLink.addEventListener("click", function (e) {
   e.preventDefault();
   userName.classList.replace("d-none", "d-block");
@@ -22,7 +25,8 @@ signUpLink.addEventListener("click", function (e) {
   TermsBox.classList.replace("d-none", "d-block");
   insertText.innerHTML = ``;
 });
-// ===========================================
+// show and hide elements with signin Link--------------
+
 signInLink.addEventListener("click", function (e) {
   e.preventDefault();
   userName.classList.replace("d-block", "d-none");
@@ -33,7 +37,7 @@ signInLink.addEventListener("click", function (e) {
   TermsBox.classList.replace("d-block", "d-none");
   insertText.innerHTML = ``;
 });
-// chack if input are empty in sign up
+// chack if input are empty in sign up-----------------
 function chackEmptyAllInput() {
   if (userName.value == "" || userEmail.value == "" || pass.value == "") {
     return false;
@@ -41,6 +45,7 @@ function chackEmptyAllInput() {
     return true;
   }
 }
+
 function isEmptySignUp() {
   if (
     chackEmptyAllInput() &&
@@ -54,7 +59,7 @@ function isEmptySignUp() {
     return false;
   }
 }
-// chack if input are empty in sign in
+// chack if input are empty in sign in-------------------
 
 function chackEmptyPassEmail() {
   if (userEmail.value == "" || pass.value == "") {
@@ -72,18 +77,19 @@ function isEmptySignIn() {
     return false;
   }
 }
-// add user to local**************************************************************************
+// local storage array--------------------------------------
 var usersList;
 if (localStorage.getItem("users")) {
   usersList = JSON.parse(localStorage.getItem("users"));
 } else {
   usersList = [];
 }
-// **********************************///////////////////////////////////***********************************/*/*/*/// */
+// sign up actions----------------------------------------
 signUpBtn.addEventListener("click", function () {
   if (!isEmptySignUp()) {
     return false;
   }
+
   if (localStorage.getItem("users") == null) {
     // empty for first time
     saveUser();
@@ -91,6 +97,7 @@ signUpBtn.addEventListener("click", function () {
     location = "./home.html";
     return true;
   }
+
   if (checkExistEmail()) {
     insertText.innerHTML = `<p class="text-danger fw-semibold ">email already exists</p>`;
   } else {
@@ -100,6 +107,8 @@ signUpBtn.addEventListener("click", function () {
   }
   clear();
 });
+// add user to array---------
+
 function saveUser() {
   var user = {
     name: userName.value,
@@ -110,7 +119,7 @@ function saveUser() {
   localStorage.setItem("users", JSON.stringify(usersList));
   localStorage.setItem("homeUserName", userName.value);
 }
-// =================================================================******************************
+
 function checkExistEmail() {
   for (var i = 0; i < usersList.length; i++) {
     if (userEmail.value == usersList[i].email) {
@@ -120,11 +129,13 @@ function checkExistEmail() {
     }
   }
 }
-// /********************************************************************** */
+// End sign up actions----------------------------------
+// sign In actions-----------------------------------
 signInBtn.addEventListener("click", function () {
   if (!isEmptySignIn()) {
     return false;
   }
+
   if (searchStorage()) {
     location = "./home.html";
   }
@@ -144,12 +155,12 @@ function searchStorage() {
     }
   }
 }
-// validtion sec===============================
+// validtion regex---------------------------
 var userNameRegex = /^[A-Z]\w+( )?\w*$/;
 var userEmailRegex = /^[a-z0-9]+@(gmail|outlook)(\.com)$/;
 var userPassRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,14}$/;
-console.log(userPassRegex.test("1234AAa@qdsad"));
+
 function isNameValid() {
   if (userNameRegex.test(userName.value)) {
     return true;
@@ -157,6 +168,7 @@ function isNameValid() {
     return false;
   }
 }
+
 function isEmailValid() {
   if (userEmailRegex.test(userEmail.value)) {
     return true;
@@ -164,6 +176,7 @@ function isEmailValid() {
     return false;
   }
 }
+
 function isPassValid() {
   if (userPassRegex.test(pass.value)) {
     return true;
@@ -183,7 +196,7 @@ userEmail.addEventListener("input", function () {
 pass.addEventListener("input", function () {
   validation(pass, userPassRegex);
 });
-
+// add class to inputs---------------------------------
 function validation(input, regexType) {
   if (regexType.test(input.value)) {
     input.classList.add("is-valid");
@@ -193,7 +206,7 @@ function validation(input, regexType) {
     input.classList.remove("is-valid");
   }
 }
-
+// clear inputs class and value-----------------
 function clear() {
   userName.value = "";
   userEmail.value = "";
