@@ -1,4 +1,4 @@
-// ----------------form variables------------------------
+// form variables-----------------------------------
 
 var userName = document.getElementById("userName");
 var userEmail = document.getElementById("userEmail");
@@ -6,7 +6,7 @@ var pass = document.getElementById("pass");
 var insertText = document.getElementById("insertText");
 var signUpBtn = document.getElementById("signUpBtn");
 var signInBtn = document.getElementById("signInBtn");
-// ---------prag and links elemets-----------------------
+// prag and links elemets------------------------------
 
 var signUpLink = document.getElementById("signUpLink");
 var signInLink = document.getElementById("signInLink");
@@ -107,7 +107,7 @@ signUpBtn.addEventListener("click", function () {
   }
   clear();
 });
-// add user to array---------
+// add user to array------------------------------
 
 function saveUser() {
   var user = {
@@ -139,6 +139,7 @@ signInBtn.addEventListener("click", function () {
   if (searchStorage()) {
     location = "./home.html";
   }
+  clear();
 });
 
 function searchStorage() {
