@@ -1,0 +1,71 @@
+/* global style =================================== */
+:root {
+  --color-primary: #f5a872;
+  --color-secondery: #fb4c53;
+  --color-headin: #281767;
+  --ff-primary: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--ff-primary);
+  background-image: linear-gradient(90deg, #fefefe, #b9c5df);
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+h1 {
+  color: var(--color-headin);
+  font-size: clamp(32px, calc(24px + 3.3vw), 36px);
+  font-weight: 800;
+}
+
+.our-bg {
+  background-image: linear-gradient(#f9faff, #ffffff);
+}
+
+.btns {
+  background-color: var(--color-secondery);
+  color: white !important;
+  outline: none;
+  border: none;
+  padding-block: 7px;
+  transition: background-color 400ms;
+}
+
+.form-control:focus {
+  --color-primary: #f8bc9176;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.25rem var(--color-primary);
+}
+
+
+
+.btns:hover {
+  --color-secondery: #ea373d;
+  background-color: var(--color-secondery);
+}
+
+
+@media screen and (max-width:992px) {
+  #rightSide {
+    display: none !important;
+  }
+}
+
+
+#TermsBox {
+  font-size: 14px;
+  list-style-type: circle;
+}
+
+.navbar-brand {
+  color: var(--color-headin);
+  font-weight: 700;
+}
+
+h1 span {
+  color: var(--color-secondery);
+}
